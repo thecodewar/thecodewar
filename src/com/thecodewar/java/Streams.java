@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
@@ -23,7 +24,7 @@ public class Streams {
         String[] nameArray = new String[]{"Adarsh","Haider","Wajid","Ahsun"};
         // 3. Stream.of can also be used.
         Arrays.stream(nameArray).filter(n-> n!="Adarsh").forEach(System.out::println);
-            //the following stream will return false,true,true and true
+            //the following stream will return false,true,true and true, it should be handled into filter instead of map
         //Stream.of(nameArray).map(n-> n!="Adarsh").forEach(System.out::println);
 
         // 4. find average of squares of numbers.
@@ -55,18 +56,40 @@ public class Streams {
 
         //7. As Array list
         List<String> sports = Arrays.asList("football","cricket","table tennis");
-        sports.stream().map(String::toUpperCase).forEach(System.out::println);
+        //sports.stream().map(String::toUpperCase).findFirst().ifPresent(System.out::println);
+
+        //8. Fabinaci series
+        int[] arrNum = {0,1};
+
+        //IntStream.of(arrNum).map(n->n[0])
+        String collect = Stream.iterate(new int[]{0, 1}, t -> new int[]{t[1], t[0] + t[1]})
+                .limit(10)
+                .map(t -> t[0])
+                .map(String::valueOf) // convert to string
+                .collect(Collectors.joining(", "));
+
+        System.out.println("Result : " + collect);
 
 
-        //8. Iterating list of person
-      /*  Person p1 = createPerson("Adarsh");
+
+        //9. Iterating list of person
+        Person p1 = createPerson("Adarsh");
         Person p2 = createPerson("Zubair");
 
         List<Person> personList = new ArrayList<>();
         personList.add(p1);
-        personList.add(p2);*/
+        personList.add(p2);
 
+        List<Person> p = personList.stream().filter(n->n.getName().contains("Z")).collect(Collectors.toList());
+        p.forEach(c-> System.out.println(c.getName()));
 
+        //10.
+        List<Integer> marks = new ArrayList<>();
+        marks.add(0);
+        marks.add(5);
+        marks.add(10);
+        marks.add(15);
+        marks.stream().map(m->m+5).collect(Collectors.toList());
 
 
     }
