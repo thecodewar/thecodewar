@@ -32,3 +32,13 @@ output -- 10 elements
 **Q3. How to use Optional?**
 
 https://www.callicoder.com/java-8-optional-tutorial/
+
+**Q4. About Period and Duration**
+
+With Java 8, two specialized classes are introduced to deal with the time differences.
+
+Period − It deals with date based amount of time.
+
+Duration − It deals with time based amount of time.
+
+

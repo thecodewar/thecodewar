@@ -5,16 +5,19 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.Flow;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.LongStream;
 import java.util.stream.Stream;
+import java.util.concurrent.Flow.*;
 
 public class Streams {
 
     public static void main(String[] args) {
 
+        Flow.Subscriber
         //1.
         Stream.of("a","b","d","c").sorted().findFirst().ifPresent(System.out::println);
 
